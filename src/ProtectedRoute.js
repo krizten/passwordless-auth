@@ -17,7 +17,7 @@ const ProctectedRoute = ({
         <Component {...props} />
       ) : null
     ) : (
-      <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+      <Redirect to={{ pathname: "/auth", state: { from: props.location } }} />
     );
   return <Route path={path} exact={exact} {...rest} render={routeComponent} />;
 };
