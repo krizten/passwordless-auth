@@ -1,10 +1,15 @@
 import React from "react";
 import Layout from "../Layout";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 
 const Auth = () => {
   return (
     <Layout>
-      <div>Auth works!</div>
+      <div>
+        <Login />
+        <Register />
+      </div>
     </Layout>
   );
 };
