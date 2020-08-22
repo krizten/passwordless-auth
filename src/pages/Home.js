@@ -1,13 +1,20 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import Layout from "../Layout";
+import { useDocTitle } from "../useDocTitle";
 
 const Home = () => {
+  useDocTitle("Home | Passwordless Authentication");
   const isAuthenticated = false;
 
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
-    <>
-      {isAuthenticated ? <Redirect to="/dashboard" /> : <Redirect to="/auth" />}
-    </>
+    <Layout>
+      <div></div>
+    </Layout>
   );
 };
 
