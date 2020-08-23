@@ -14,7 +14,7 @@ import { Link as RouterLink } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const Header = () => {
-  const isAuthenticated = !false;
+  const isAuthenticated = false;
   return (
     <Flex
       as="nav"
@@ -46,12 +46,12 @@ const Header = () => {
   );
 };
 
-const Layout = ({ children }) => {
+const Layout = ({ children, isAuthPage = false }) => {
   return (
     <ThemeProvider theme={theme}>
       <ColorModeProvider>
         <CSSReset />
-        <Header />
+        {!isAuthPage ? <Header /> : null}
         <Box padding="10rem 0" margin="0 auto" maxWidth="1280px">
           {children}
         </Box>

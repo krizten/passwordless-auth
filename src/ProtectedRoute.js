@@ -8,7 +8,7 @@ const ProctectedRoute = ({
   exact,
   ...rest
 }) => {
-  const isAuthenticated = !false;
+  const isAuthenticated = false;
   const routeComponent = (props) =>
     isAuthenticated ? (
       Render ? (
