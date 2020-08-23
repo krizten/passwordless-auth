@@ -14,6 +14,7 @@ import { Link as RouterLink } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const Header = () => {
+  const isAuthenticated = !false;
   return (
     <Flex
       as="nav"
@@ -22,7 +23,7 @@ const Header = () => {
       wrap="wrap"
       padding="0 1.2rem"
     >
-      <Link as={RouterLink} to="/" textDecoration="none !important">
+      <Link as={RouterLink} to="/" _hover={{ textDecoration: "none" }}>
         <Image
           size="2.5rem"
           src="https://i.postimg.cc/K8ZDTmrb/logo-bg.png"
@@ -31,9 +32,15 @@ const Header = () => {
       </Link>
       <Flex align="center">
         <ThemeSwitcher />
-        <Button bg="transparent" border="1px">
-          Login
-        </Button>
+        {!isAuthenticated ? (
+          <Button bg="transparent" border="1px" as={RouterLink} to="/login">
+            Login
+          </Button>
+        ) : (
+          <Button bg="transparent" border="1px">
+            Logout
+          </Button>
+        )}
       </Flex>
     </Flex>
   );

@@ -44,6 +44,7 @@ const Home = () => {
           borderRadius="3px"
           fontSize="1.125rem"
           color="#ffffff"
+          _hover={{ textDecoration: "none" }}
         >
           Get Started
         </Link>
