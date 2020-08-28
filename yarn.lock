@@ -9048,10 +9048,20 @@ react-focus-lock@^2.2.1:
     use-callback-ref "^1.2.1"
     use-sidecar "^1.0.1"
 
+react-hook-form@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.6.0.tgz#bda76fc50a916096afe18119f6f57f2b3911cdb7"
+  integrity sha512-5UKx2SBMaWuwy614H730Vv2QmoGdsdYpN96MnWXYzC8cHIUi9N2hYwtI86TEIcBHJ6FvEewh3onfA7P243RM1g==
+
 react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-otp-input@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-otp-input/-/react-otp-input-2.0.2.tgz#b33921423c1978ad8324a08e136fd07006dd137b"
+  integrity sha512-x4nxhaxedIKdTy1ZJpWAWimjq6qNKE66jItnuQ3J7WrSH+L81HSSt+J6te9tNNvgN7XUq5ybS8ON3sObWNWoSw==
 
 react-router-dom@^5.2.0:
   version "5.2.0"
