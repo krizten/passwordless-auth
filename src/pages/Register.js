@@ -1,5 +1,5 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
 import {
   Box,
   Link,
@@ -9,7 +9,6 @@ import {
   FormErrorMessage,
   Button,
   Input,
-  Spinner,
   Text,
 } from "@chakra-ui/core";
 import { Link as RouterLink } from "react-router-dom";
@@ -19,26 +18,24 @@ import logo from "../logo.png";
 
 const Register = () => {
   useDocTitle("Register | Passwordless Authentication");
-
   const darkMode = JSON.parse(localStorage.getItem("darkMode"));
 
-  const { handleSubmit, errors, register, formState } = useForm();
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    isSubmitting: false,
+  });
 
-  const validateName = (value) => {
-    let error;
-    if (!value) {
-      error = "Name is required";
-    } else if (value !== "Naruto") {
-      error = "Jeez! You're not a fan 😱";
-    }
-    return error || true;
-  };
+  const [formStateErrors, setFormStateErrors] = useState({
+    name: "",
+    email: "",
+  });
 
-  const onSubmit = (values) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-    }, 1000);
-  };
+  const onBlur = (e) => {};
+
+  const onChange = (e) => {};
+
+  const onSubmit = () => {};
 
   return (
     <Layout hideHeader={true}>
@@ -64,31 +61,39 @@ const Register = () => {
               <Image size="5rem" src={logo} alt="logo" />
             </Link>
           </Text>
-          <form style={{ marginTop: "2rem" }} onSubmit={handleSubmit(onSubmit)}>
-            <FormControl mb={5} textAlign="left" isInvalid={errors.name}>
+          <form style={{ marginTop: "2rem" }} onSubmit={onSubmit}>
+            <FormControl
+              mb={5}
+              textAlign="left"
+              isInvalid={formStateErrors.name ? true : false}
+            >
               <FormLabel htmlFor="name">Your Name</FormLabel>
               <Input
                 name="name"
                 id="name"
                 placeholder="John Doe"
-                ref={register({ validate: validateName })}
+                value={formState.name}
+                onChange={onChange}
+                onBlur={onBlur}
               />
-              <FormErrorMessage>
-                {errors.name && errors.name.message}
-              </FormErrorMessage>
+              <FormErrorMessage>{formStateErrors.name}</FormErrorMessage>
             </FormControl>
-            <FormControl mb={8} textAlign="left" isInvalid={errors.name}>
+            <FormControl
+              mb={8}
+              textAlign="left"
+              isInvalid={formStateErrors.email ? true : false}
+            >
               <FormLabel htmlFor="email">Email Address</FormLabel>
               <Input
                 name="email"
                 id="email"
                 type="email"
                 placeholder="johndoe@domain.com"
-                ref={register({ validate: validateName })}
+                value={formState.email}
+                onChange={onChange}
+                onBlur={onBlur}
               />
-              <FormErrorMessage>
-                {errors.name && errors.name.message}
-              </FormErrorMessage>
+              <FormErrorMessage>{formStateErrors.email}</FormErrorMessage>
             </FormControl>
             <Button
               mt={4}
@@ -96,9 +101,8 @@ const Register = () => {
               isLoading={formState.isSubmitting}
               type="submit"
               w="100%"
-              isDisabled={!true}
             >
-              {!true ? <Spinner size="md" /> : <span>Sign Up</span>}
+              <span>Sign Up</span>
             </Button>
           </form>
         </Box>

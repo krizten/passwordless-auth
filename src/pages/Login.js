@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import {
   Box,
   Link,
@@ -9,7 +9,6 @@ import {
   FormErrorMessage,
   Button,
   Input,
-  Spinner,
   Text,
 } from "@chakra-ui/core";
 import { Link as RouterLink } from "react-router-dom";
@@ -20,30 +19,23 @@ import logo from "../logo.png";
 
 const Login = () => {
   useDocTitle("Login | Passwordless Authentication");
-
   const darkMode = JSON.parse(localStorage.getItem("darkMode"));
 
-  const { handleSubmit, errors, register, formState } = useForm();
+  const [formState, setFormState] = useState({
+    email: "",
+    otp: "",
+    isSubmitting: false,
+  });
 
-  const validateName = (value) => {
-    let error;
-    if (!value) {
-      error = "Name is required";
-    } else if (value !== "Naruto") {
-      error = "Jeez! You're not a fan 😱";
-    }
-    return error || true;
-  };
+  const [formStateErrors, setFormStateErrors] = useState({
+    email: "",
+  });
 
-  const onSubmit = (values) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-    }, 1000);
-  };
+  const onBlur = (e) => {};
 
-  const [otp, setOtp] = useState("");
+  const onChange = (e) => {};
 
-  const handleChange = (otp) => setOtp(otp);
+  const onSubmit = () => {};
 
   return (
     <Layout hideHeader={true}>
@@ -70,38 +62,33 @@ const Login = () => {
               <Image size="5rem" src={logo} alt="logo" />
             </Link>
           </Text>
-          <form style={{ marginTop: "2rem" }} onSubmit={handleSubmit(onSubmit)}>
-            <FormControl mb={5} textAlign="left" isInvalid={errors.name}>
+          <form style={{ marginTop: "2rem" }} onSubmit={onSubmit}>
+            <FormControl
+              mb={5}
+              textAlign="left"
+              isInvalid={formStateErrors.email ? true : false}
+            >
               <FormLabel htmlFor="email">Email Address</FormLabel>
               <Input
                 name="email"
                 id="email"
                 type="email"
                 placeholder="johndoe@domain.com"
-                ref={register({ validate: validateName })}
+                value={formState.email}
+                onChange={onChange}
+                onBlur={onBlur}
               />
-              <FormErrorMessage>
-                {errors.name && errors.name.message}
-              </FormErrorMessage>
+              <FormErrorMessage>{formStateErrors.email}</FormErrorMessage>
             </FormControl>
-            <FormControl
-              mb={8}
-              textAlign="left"
-              isInvalid={errors.name}
-              className="otp-input"
-            >
+            <FormControl mb={8} textAlign="left" className="otp-input">
               <FormLabel htmlFor="otp">OTP Code</FormLabel>
               <OtpInput
-                value={otp}
-                onChange={handleChange}
+                value={formState.otp}
+                onChange={onChange}
                 numInputs={6}
-                separator={" "}
                 isInputNum={true}
                 isDisabled={!true}
               />
-              <FormErrorMessage>
-                {errors.name && errors.name.message}
-              </FormErrorMessage>
             </FormControl>
             <Button
               mt={4}
@@ -111,7 +98,7 @@ const Login = () => {
               w="100%"
               isDisabled={!true}
             >
-              {!true ? <Spinner size="md" /> : <span>Login</span>}
+              <span>Login</span>
             </Button>
           </form>
         </Box>
