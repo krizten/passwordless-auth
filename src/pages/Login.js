@@ -59,14 +59,17 @@ const Login = () => {
           bg={darkMode ? "gray.900" : "gray.50"}
           marginBottom="5px"
         >
-          <Link
-            textAlign="center"
-            as={RouterLink}
-            to="/"
-            _hover={{ textDecoration: "none" }}
-          >
-            <Image size="5rem" src={logo} alt="logo" margin="0 auto" />
-          </Link>
+          <Text display="flex" justifyContent="center">
+            <Link
+              textAlign="center"
+              as={RouterLink}
+              to="/"
+              _hover={{ textDecoration: "none" }}
+              _focus={{ boxShadow: "none" }}
+            >
+              <Image size="5rem" src={logo} alt="logo" />
+            </Link>
+          </Text>
           <form style={{ marginTop: "2rem" }} onSubmit={handleSubmit(onSubmit)}>
             <FormControl mb={5} textAlign="left" isInvalid={errors.name}>
               <FormLabel htmlFor="email">Email Address</FormLabel>
