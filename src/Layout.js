@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
+import logo from "./logo.png";
 
 const Header = () => {
   const isAuthenticated = false;
@@ -24,11 +25,7 @@ const Header = () => {
       padding="0 1.2rem"
     >
       <Link as={RouterLink} to="/" _hover={{ textDecoration: "none" }}>
-        <Image
-          size="2.5rem"
-          src="https://i.postimg.cc/K8ZDTmrb/logo-bg.png"
-          alt="logo"
-        />
+        <Image size="2.5rem" src={logo} alt="logo" />
       </Link>
       <Flex align="center">
         <ThemeSwitcher />
@@ -46,12 +43,12 @@ const Header = () => {
   );
 };
 
-const Layout = ({ children, isAuthPage = false }) => {
+const Layout = ({ children, hideHeader = false }) => {
   return (
     <ThemeProvider theme={theme}>
       <ColorModeProvider>
         <CSSReset />
-        {!isAuthPage ? <Header /> : null}
+        {!hideHeader ? <Header /> : null}
         <Box padding="10rem 0" margin="0 auto" maxWidth="1280px">
           {children}
         </Box>

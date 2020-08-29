@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Box,
@@ -13,8 +13,10 @@ import {
   Text,
 } from "@chakra-ui/core";
 import { Link as RouterLink } from "react-router-dom";
+import OtpInput from "react-otp-input";
 import Layout from "../Layout";
 import { useDocTitle } from "../useDocTitle";
+import logo from "../logo.png";
 
 const Login = () => {
   useDocTitle("Login | Passwordless Authentication");
@@ -39,8 +41,12 @@ const Login = () => {
     }, 1000);
   };
 
+  const [otp, setOtp] = useState("");
+
+  const handleChange = (otp) => setOtp(otp);
+
   return (
-    <Layout isAuthPage={true}>
+    <Layout hideHeader={true}>
       <Box
         margin="0 auto"
         maxWidth={["22rem", "22rem", "25rem", "25rem"]}
@@ -59,12 +65,7 @@ const Login = () => {
             to="/"
             _hover={{ textDecoration: "none" }}
           >
-            <Image
-              size="5rem"
-              src="https://i.postimg.cc/K8ZDTmrb/logo-bg.png"
-              alt="logo"
-              margin="0 auto"
-            />
+            <Image size="5rem" src={logo} alt="logo" margin="0 auto" />
           </Link>
           <form style={{ marginTop: "2rem" }} onSubmit={handleSubmit(onSubmit)}>
             <FormControl mb={5} textAlign="left" isInvalid={errors.name}>
@@ -80,13 +81,20 @@ const Login = () => {
                 {errors.name && errors.name.message}
               </FormErrorMessage>
             </FormControl>
-            <FormControl mb={8} textAlign="left" isInvalid={errors.name}>
+            <FormControl
+              mb={8}
+              textAlign="left"
+              isInvalid={errors.name}
+              className="otp-input"
+            >
               <FormLabel htmlFor="otp">OTP Code</FormLabel>
-              <Input
-                name="otp-code"
-                id="name"
-                placeholder="1122333"
-                ref={register({ validate: validateName })}
+              <OtpInput
+                value={otp}
+                onChange={handleChange}
+                numInputs={6}
+                separator={" "}
+                isInputNum={true}
+                isDisabled={!true}
               />
               <FormErrorMessage>
                 {errors.name && errors.name.message}

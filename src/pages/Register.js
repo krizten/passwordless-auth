@@ -15,6 +15,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import Layout from "../Layout";
 import { useDocTitle } from "../useDocTitle";
+import logo from "../logo.png";
 
 const Register = () => {
   useDocTitle("Register | Passwordless Authentication");
@@ -40,7 +41,7 @@ const Register = () => {
   };
 
   return (
-    <Layout isAuthPage={true}>
+    <Layout hideHeader={true}>
       <Box
         margin="0 auto"
         maxWidth={["22rem", "22rem", "25rem", "25rem"]}
@@ -59,12 +60,7 @@ const Register = () => {
             to="/"
             _hover={{ textDecoration: "none" }}
           >
-            <Image
-              size="5rem"
-              src="https://i.postimg.cc/K8ZDTmrb/logo-bg.png"
-              alt="logo"
-              margin="0 auto"
-            />
+            <Image size="5rem" src={logo} alt="logo" margin="0 auto" />
           </Link>
           <form style={{ marginTop: "2rem" }} onSubmit={handleSubmit(onSubmit)}>
             <FormControl mb={5} textAlign="left" isInvalid={errors.name}>
