@@ -1,8 +1,8 @@
 import React from "react";
 import Loader from "../Loader";
 
-const Authorization = () => {
+const Authentication = () => {
   return <Loader />;
 };
 
-export default Authorization;
+export default Authentication;
