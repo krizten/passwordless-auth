@@ -14,6 +14,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import Layout from "../Layout";
 import { useDocTitle } from "../useDocTitle";
+import { useFormValidation } from "../useFormValidation";
 import logo from "../logo.png";
 
 const Register = () => {
@@ -26,14 +27,15 @@ const Register = () => {
     isSubmitting: false,
   });
 
-  const [formStateErrors, setFormStateErrors] = useState({
+  const [formStateErrors, onBlur] = useFormValidation({
     name: "",
     email: "",
   });
 
-  const onBlur = (e) => {};
-
-  const onChange = (e) => {};
+  const onChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+    onBlur(e);
+  };
 
   const onSubmit = () => {};
 

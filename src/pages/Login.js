@@ -15,6 +15,7 @@ import { Link as RouterLink } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import Layout from "../Layout";
 import { useDocTitle } from "../useDocTitle";
+import { useFormValidation } from "../useFormValidation";
 import logo from "../logo.png";
 
 const Login = () => {
@@ -27,13 +28,14 @@ const Login = () => {
     isSubmitting: false,
   });
 
-  const [formStateErrors, setFormStateErrors] = useState({
+  const [formStateErrors, onBlur] = useFormValidation({
     email: "",
   });
 
-  const onBlur = (e) => {};
-
-  const onChange = (e) => {};
+  const onChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+    onBlur(e);
+  };
 
   const onSubmit = () => {};
 
