@@ -16,6 +16,7 @@ import Layout from "../Layout";
 import { useDocTitle } from "../useDocTitle";
 import { useFormValidation } from "../useFormValidation";
 import logo from "../logo.png";
+import { otpStart } from "../services";
 
 const Register = () => {
   useDocTitle("Register | Passwordless Authentication");
@@ -35,7 +36,20 @@ const Register = () => {
     onBlur(e);
   };
 
-  const onSubmit = () => {};
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    const { email } = formState;
+    if (email) {
+      setFormState({ ...formState, isSubmitting: true });
+      try {
+        await otpStart({ email });
+      } catch (err) {
+        console.warn(Object.entries(err));
+      }
+      setFormState({ ...formState, isSubmitting: false });
+    }
+  };
 
   return (
     <Layout hideHeader={true}>
