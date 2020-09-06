@@ -22,13 +22,11 @@ const Register = () => {
   const darkMode = JSON.parse(localStorage.getItem("darkMode"));
 
   const [formState, setFormState] = useState({
-    name: "",
     email: "",
     isSubmitting: false,
   });
 
   const [formStateErrors, onBlur] = useFormValidation({
-    name: "",
     email: "",
   });
 
@@ -64,22 +62,6 @@ const Register = () => {
             </Link>
           </Text>
           <form style={{ marginTop: "2rem" }} onSubmit={onSubmit}>
-            <FormControl
-              mb={5}
-              textAlign="left"
-              isInvalid={formStateErrors.name ? true : false}
-            >
-              <FormLabel htmlFor="name">Your Name</FormLabel>
-              <Input
-                name="name"
-                id="name"
-                placeholder="John Doe"
-                value={formState.name}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-              <FormErrorMessage>{formStateErrors.name}</FormErrorMessage>
-            </FormControl>
             <FormControl
               mb={8}
               textAlign="left"

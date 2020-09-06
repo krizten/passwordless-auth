@@ -8,19 +8,6 @@ export function useFormValidation(initialState) {
     state,
     (e) => {
       switch (e.target.name) {
-        case "name":
-          if (!e.target.value) {
-            setState({
-              ...state,
-              [e.target.name]: "Name is required",
-            });
-          } else {
-            setState({
-              ...state,
-              [e.target.name]: "",
-            });
-          }
-          break;
         case "email":
           if (!e.target.value) {
             setState({

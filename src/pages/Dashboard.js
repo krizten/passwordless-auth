@@ -21,7 +21,7 @@ const Register = () => {
           fontFamily="'Oswald', sans-serif"
           marginBottom="1.2rem"
         >
-          Hi, John Doe.
+          Hi, johndoe@domain.com.
         </Heading>
         <Text opacity="0.7" marginBottom="3.5rem" fontSize="1.125rem">
           Explore the dashboard options, services and book appointments that matter to you.
