@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import {
   Box,
@@ -11,7 +10,7 @@ import {
   Input,
   Text,
 } from "@chakra-ui/core";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import Layout from "../Layout";
 import { useDocTitle } from "../useDocTitle";
@@ -22,8 +21,10 @@ const Login = () => {
   useDocTitle("Login | Passwordless Authentication");
   const darkMode = JSON.parse(localStorage.getItem("darkMode"));
 
+  const location = useLocation();
+
   const [formState, setFormState] = useState({
-    email: "",
+    email: location.state && location.state.data ? location.state.data.email : "",
     otp: "",
     isSubmitting: false,
   });

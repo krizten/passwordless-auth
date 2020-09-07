@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import {
   Box,
@@ -11,16 +10,21 @@ import {
   Input,
   Text,
 } from "@chakra-ui/core";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import Layout from "../Layout";
 import { useDocTitle } from "../useDocTitle";
 import { useFormValidation } from "../useFormValidation";
 import logo from "../logo.png";
 import { otpStart } from "../services";
+import { useToasts } from "react-toast-notifications";
 
 const Register = () => {
   useDocTitle("Register | Passwordless Authentication");
   const darkMode = JSON.parse(localStorage.getItem("darkMode"));
+
+  const history = useHistory();
+
+  const { addToast } = useToasts();
 
   const [formState, setFormState] = useState({
     email: "",
@@ -43,11 +47,20 @@ const Register = () => {
     if (email) {
       setFormState({ ...formState, isSubmitting: true });
       try {
-        await otpStart({ email });
+        const data = await otpStart({ email });
+        setFormState({ ...formState, isSubmitting: false });
+        addToast(`OTP Code has been sent to ${email}`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        history.push({
+          pathname: "/login",
+          state: { data },
+        });
       } catch (err) {
         console.warn(Object.entries(err));
+        setFormState({ ...formState, isSubmitting: false });
       }
-      setFormState({ ...formState, isSubmitting: false });
     }
   };
 
@@ -99,6 +112,7 @@ const Register = () => {
               isLoading={formState.isSubmitting}
               type="submit"
               w="100%"
+              onClick={onSubmit}
             >
               <span>Sign Up</span>
             </Button>
