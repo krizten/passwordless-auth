@@ -1,10 +1,10 @@
 import auth0 from "auth0-js";
 
-const webAuth = new auth0.WebAuth({
+export const webAuth = new auth0.WebAuth({
   domain: "kutz-tutorial.us.auth0.com",
   clientID: "mPw3aO42fNGZQ3v9gvZ6bLGo0ORcJf0J",
   responseType: "token id_token",
-  redirectUri: `${window.location.origin}/authenticate`,
+  redirectUri: `${window.location.origin}/authorize`,
 });
 
 export const otpStart = ({ email }) => {
@@ -20,7 +20,7 @@ export const otpStart = ({ email }) => {
   });
 };
 
-export const otpLogin = ({ otp, email }) => {
+export const otpLogin = ({ email, otp }) => {
   return new Promise((resolve, reject) => {
     webAuth.passwordlessLogin(
       { email, connection: "email", verificationCode: otp },
@@ -32,5 +32,12 @@ export const otpLogin = ({ otp, email }) => {
         }
       }
     );
+  });
+};
+
+export const logout = () => {
+  webAuth.logout({
+    returnTo: `${window.location.origin}`,
+    clientID: "mPw3aO42fNGZQ3v9gvZ6bLGo0ORcJf0J",
   });
 };

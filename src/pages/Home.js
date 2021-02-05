@@ -38,7 +38,7 @@ const Home = () => {
         </Text>
         <Link
           as={RouterLink}
-          to="/register"
+          to="/auth"
           bg="teal.500"
           padding="0.8rem 2rem"
           borderRadius="3px"

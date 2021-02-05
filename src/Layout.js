@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   ThemeProvider,
   ColorModeProvider,
@@ -11,11 +11,20 @@ import {
   Image,
 } from "@chakra-ui/core";
 import { Link as RouterLink } from "react-router-dom";
+
 import ThemeSwitcher from "./ThemeSwitcher";
+import { StoreContext } from "./store";
+import { logout } from "./services";
 import logo from "./logo.png";
 
 const Header = () => {
-  const isAuthenticated = false;
+  const { isAuthenticated, resetAuth } = useContext(StoreContext);
+
+  const logoutUser = () => {
+    resetAuth();
+    logout();
+  };
+
   return (
     <Flex
       as="nav"
@@ -30,11 +39,11 @@ const Header = () => {
       <Flex align="center">
         <ThemeSwitcher />
         {!isAuthenticated ? (
-          <Button bg="transparent" border="1px" as={RouterLink} to="/login">
+          <Button bg="transparent" border="1px" as={RouterLink} to="/auth">
             Login
           </Button>
         ) : (
-          <Button bg="transparent" border="1px">
+          <Button bg="transparent" border="1px" onClick={logoutUser}>
             Logout
           </Button>
         )}

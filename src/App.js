@@ -1,22 +1,20 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Login from "./pages/Login";
+import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import Register from "./pages/Register";
 import ProtectedRoute from "./ProtectedRoute";
-import Authentication from "./pages/Authentication";
+import Authorize from "./pages/Authorize";
 
 const App = () => {
   return (
     <BrowserRouter basename="/">
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route path="/authenticate" component={Authentication} />
+        <Route exact path="/auth" component={Auth} />
+        <Route path="/authorize" component={Authorize} />
         <ProtectedRoute exact path="/dashboard" component={Dashboard} />
         <Route path="*" component={NotFound} />
       </Switch>
