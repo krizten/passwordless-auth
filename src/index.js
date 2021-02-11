@@ -3,12 +3,10 @@ import ReactDOM from "react-dom";
 import { ToastProvider } from "react-toast-notifications";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { StoreProvider } from "./store";
 import "./index.css";
 
 ReactDOM.render(
   <>
-    <StoreProvider>
       <ToastProvider
         placement="bottom-right"
         autoDismissTimeout={3000}
@@ -16,7 +14,6 @@ ReactDOM.render(
       >
         <App />
       </ToastProvider>
-    </StoreProvider>
   </>,
   document.getElementById("root")
 );

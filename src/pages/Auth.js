@@ -15,17 +15,13 @@ import { Link as RouterLink } from "react-router-dom";
 import OtpInput from "react-otp-input";
 
 import Layout from "../Layout";
-import { otpStart, otpLogin } from "../services";
 import { useDocTitle } from "../useDocTitle";
-import { useToasts } from "react-toast-notifications";
 import { validateEmail } from "../helpers";
 import logo from "../logo.png";
 
 const Auth = () => {
   useDocTitle("Auth | Passwordless Authentication");
   const darkMode = JSON.parse(localStorage.getItem("darkMode"));
-
-  const { addToast } = useToasts();
 
   const [formState, setFormState] = useState({
     email: "",
@@ -69,59 +65,8 @@ const Auth = () => {
     onBlur(e);
   };
 
-  const requestOtp = async (email) => {
-    if (email && validateEmail(email)) {
-      setFormState({ ...formState, isSubmitting: true, otpAvailable: false });
-      try {
-        await otpStart({ email });
-        addToast(`OTP Code has been sent to ${email}`, {
-          appearance: "success",
-          autoDismiss: true,
-        });
-        setFormState({ ...formState, isSubmitting: false, otpAvailable: true });
-      } catch (err) {
-        addToast(
-          `${
-            err?.error_description || "Something went wrong. Please try again."
-          }`,
-          {
-            appearance: "error",
-            autoDismiss: true,
-          }
-        );
-        setFormState({ ...formState, isSubmitting: false });
-      }
-    }
-  };
-
-  const login = async ({ email, otp }) => {
-    setFormState({ ...formState, isSubmitting: true });
-    try {
-      await otpLogin({ otp, email });
-    } catch (err) {
-      addToast(
-        `${
-          err?.error_description || "Something went wrong. Please try again."
-        }`,
-        {
-          appearance: "error",
-          autoDismiss: true,
-        }
-      );
-    }
-    setFormState({ ...formState, isSubmitting: false });
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    const { email, otp, otpAvailable } = formState;
-
-    if (otpAvailable) {
-      login({ email, otp });
-    } else {
-      requestOtp(email);
-    }
   };
 
   const displayOtpInput = () => {
@@ -175,7 +120,6 @@ const Auth = () => {
                       to="/auth"
                       _focus={{ outline: "none" }}
                       color="#81E6D9"
-                      onClick={() => requestOtp(formState.email)}
                       d="flex"
                       alignItems="center"
                     >

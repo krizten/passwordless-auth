@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   ThemeProvider,
   ColorModeProvider,
@@ -13,17 +13,12 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 
 import ThemeSwitcher from "./ThemeSwitcher";
-import { StoreContext } from "./store";
-import { logout } from "./services";
 import logo from "./logo.png";
 
 const Header = () => {
-  const { isAuthenticated, resetAuth } = useContext(StoreContext);
+  const isAuthenticated = false;
 
-  const logoutUser = () => {
-    resetAuth();
-    logout();
-  };
+  const logoutUser = () => {};
 
   return (
     <Flex

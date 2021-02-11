@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Redirect, Route } from "react-router-dom";
-
-import { StoreContext } from "./store";
 
 const ProctectedRoute = ({
   component: Component = null,
@@ -10,7 +8,7 @@ const ProctectedRoute = ({
   exact,
   ...rest
 }) => {
-  const { isAuthenticated } = useContext(StoreContext);
+  const isAuthenticated = false;
 
   const routeComponent = (props) =>
     isAuthenticated ? (

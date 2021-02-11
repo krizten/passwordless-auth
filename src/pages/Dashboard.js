@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box, Text, Heading } from "@chakra-ui/core";
 
 import Layout from "../Layout";
 import { useDocTitle } from "../useDocTitle";
-import { StoreContext } from "../store";
 
 const Register = () => {
-  const { user } = useContext(StoreContext);
   useDocTitle("Dashboard | Passwordless Authentication");
 
   return (
@@ -25,7 +23,7 @@ const Register = () => {
           fontFamily="'Oswald', sans-serif"
           marginBottom="1.2rem"
         >
-          Hi, {user?.email}.
+          Hi, johndoe@domain.com.
         </Heading>
         <Text opacity="0.7" marginBottom="3.5rem" fontSize="1.125rem">
           Explore the dashboard options, services and book appointments that
