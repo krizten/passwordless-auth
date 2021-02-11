@@ -1,5 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![passwordless-auth](passwordless-auth.gif)
+<p align="center">Source code for "How to Setup Passwordless Authentication with Auth0" tutorial on <a href="https://codememoirs.com/" target="_blank">Code Memoirs</a></p>
+<br><br><br>
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Available Scripts
 
 In the project directory, you can run:
