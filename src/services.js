@@ -1,8 +1,8 @@
 import auth0 from "auth0-js";
 
 export const webAuth = new auth0.WebAuth({
-  domain: "kutz-tutorial.us.auth0.com",
-  clientID: "mPw3aO42fNGZQ3v9gvZ6bLGo0ORcJf0J",
+  domain: process.env.REACT_APP_DOMAIN,
+  clientID: process.env.REACT_APP_CLIENT_ID,
   responseType: "token id_token",
   redirectUri: `${window.location.origin}/authorize`,
 });
@@ -38,6 +38,6 @@ export const otpLogin = ({ email, otp }) => {
 export const logout = () => {
   webAuth.logout({
     returnTo: `${window.location.origin}`,
-    clientID: "mPw3aO42fNGZQ3v9gvZ6bLGo0ORcJf0J",
+    clientID: process.env.REACT_APP_CLIENT_ID,
   });
 };
